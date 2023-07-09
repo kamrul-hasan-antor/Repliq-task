@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { RxCrossCircled } from "react-icons/rx";
 import { CartContext } from "../context/CartProvider";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Modal = ({ modalData, showModal, setShowModal }) => {
   const { addToCart } = useContext(CartContext);
   const { name, price, details, category, imageURL } = modalData;
@@ -24,7 +27,7 @@ const Modal = ({ modalData, showModal, setShowModal }) => {
           <RxCrossCircled className="text-[#0d7a52]" size={28} />
         </button>
         <div className="flex flex-col lg:flex-row ">
-          <div className="lg:w-1/2 lg:pr-3 bg-red-50">
+          <div className="lg:w-1/2 lg:pr-3">
             <img className="rounded-md w-full h-full" src={imageURL} alt="" />
           </div>
           <div className="lg:w-1/2 lg:pl-3 mt-2 ">
@@ -42,6 +45,18 @@ const Modal = ({ modalData, showModal, setShowModal }) => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };

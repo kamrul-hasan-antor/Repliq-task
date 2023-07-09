@@ -7,11 +7,8 @@ import { CartContext } from "../context/CartProvider";
 
 const Cart = () => {
   const [showCart, setShowCart] = useState(false);
-  const [quantity, setQuantity] = useState(1);
   const { cart, incrementQuantity, decrementQuantity, removeItem } =
     useContext(CartContext);
-
-  console.log(cart.length);
 
   return (
     <div>
@@ -93,6 +90,8 @@ const Cart = () => {
                 </div>
               </div>
             ))}
+
+            {/* conditional when cart is empty */}
             {cart.length === 0 && (
               <div className="flex flex-col justify-center h-full items-center w-5/6 mx-auto">
                 <div className="bg-[#0d7a52]/20 rounded-full p-5">

@@ -27,6 +27,7 @@ const Slider = () => {
       }}
       modules={[Autoplay, Navigation, Pagination]}
     >
+      {/* Slider 1 */}
       <SwiperSlide className="relative">
         <img className="w-full h-full" src={slide1} alt="" />
         <p className="absolute top-0 px-2 text-center md:text-start md:left-10 flex flex-col justify-center h-full w-full lg:w-1/2 bg-slate-50/50 md:bg-transparent">
@@ -39,6 +40,8 @@ const Slider = () => {
           </span>
         </p>
       </SwiperSlide>
+
+      {/* Slider 2 */}
       <SwiperSlide className="relative">
         <img className="w-full h-full" src={slide2} alt="" />
         <p className="absolute top-0 px-2 text-center md:text-start md:left-10 flex flex-col justify-center h-full w-full lg:w-1/2 bg-slate-50/50 md:bg-transparent">
@@ -51,6 +54,8 @@ const Slider = () => {
           </span>
         </p>
       </SwiperSlide>
+
+      {/* Slider 3 */}
       <SwiperSlide className="relative">
         <img className="w-full h-full" src={slide3} alt="" />
 

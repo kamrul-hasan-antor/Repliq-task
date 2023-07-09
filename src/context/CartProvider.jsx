@@ -1,4 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const CartContext = createContext();
 
@@ -16,7 +18,6 @@ export const CartProvider = ({ children }) => {
     // Check if the product is already in the cart
     const existingProduct = cart.find((item) => item.id === product.id);
     if (existingProduct) {
-      console.log("Product is already in the cart.");
       return;
     }
 
@@ -24,6 +25,7 @@ export const CartProvider = ({ children }) => {
     const updatedCart = [...cart, product];
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    toast.success(`${product.name} added to cart`);
   };
 
   // increment quantity of a specific item in cart

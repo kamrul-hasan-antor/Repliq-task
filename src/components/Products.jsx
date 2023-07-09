@@ -77,6 +77,7 @@ const Products = () => {
           })}
         </div>
 
+        {/* Product details modal */}
         <Modal
           modalData={modalData}
           showModal={showModal}
