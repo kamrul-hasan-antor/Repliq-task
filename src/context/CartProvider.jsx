@@ -5,7 +5,6 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  // Load cart data from local storage on component mount
   useEffect(() => {
     const storedProducts = localStorage.getItem("cart");
     if (storedProducts) {
@@ -13,27 +12,21 @@ export const CartProvider = ({ children }) => {
     }
   }, []);
 
-  // Add a product to the cart
   const addToCart = (product) => {
     // Check if the product is already in the cart
     const existingProduct = cart.find((item) => item.id === product.id);
-
     if (existingProduct) {
       console.log("Product is already in the cart.");
-      return; // Exit the function if the product is already in the cart
+      return;
     }
 
     // Add the product to the cart
     const updatedCart = [...cart, product];
     setCart(updatedCart);
-
-    // Save the updated cart data to local storage
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-
-    console.log("Product added to the cart.");
   };
 
-  // Update quantity of a specific item in cart
+  // increment quantity of a specific item in cart
   const incrementQuantity = (productId) => {
     const updatedProducts = cart.map((product) => {
       if (product.id === productId) {
@@ -45,6 +38,7 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(updatedProducts));
   };
 
+  // decrement quantity of a specific item in cart
   const decrementQuantity = (productId) => {
     const updatedProducts = cart.map((product) => {
       if (product.id === productId && product.quantity > 1) {
@@ -56,6 +50,7 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(updatedProducts));
   };
 
+  // remove product from cart
   const removeItem = (productId) => {
     const updatedProducts = cart.filter((product) => product.id !== productId);
     setCart(updatedProducts);
