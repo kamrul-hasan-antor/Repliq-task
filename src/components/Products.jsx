@@ -1,14 +1,24 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Modal from "./Modal";
 
 const Products = () => {
   const [products, setProducts] = useState({});
+
+  const [modalData, setModalData] = useState({});
+  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     axios
       .get("/data.json")
       .then((res) => setProducts(res.data))
       .catch((error) => console.log(error));
   }, []);
+
+  const handleModal = (d) => {
+    setModalData(d);
+    setShowModal(true);
+  };
 
   return (
     <div className="md:flex h-[200vh] w-11/12 lg:w- max-w-screen-2xl mx-auto py-6">
@@ -45,7 +55,10 @@ const Products = () => {
                     <p className="text-base md:text-lg font-semibold">
                       ${product.price}
                     </p>
-                    <button className="text-x border border-[#0d7a52]/70 rounded-sm p-1.5 hover:bg-[#0d7a52] group/edit">
+                    <button
+                      className="text-x border border-[#0d7a52]/70 rounded-sm p-1.5 hover:bg-[#0d7a52] group/edit"
+                      onClick={() => handleModal(product)}
+                    >
                       <svg
                         strokeWidth="0"
                         viewBox="0 0 512 512"
@@ -63,6 +76,12 @@ const Products = () => {
             );
           })}
         </div>
+
+        <Modal
+          modalData={modalData}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
       </div>
     </div>
   );
