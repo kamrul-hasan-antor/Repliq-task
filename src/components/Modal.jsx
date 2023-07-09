@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-
+import React, { useContext, useEffect, useState } from "react";
 import { RxCrossCircled } from "react-icons/rx";
-import { BiMinus, BiPlus } from "react-icons/bi";
+import { CartContext } from "../context/CartProvider";
 
 const Modal = ({ modalData, showModal, setShowModal }) => {
-  const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useContext(CartContext);
+  const { name, price, details, category, imageURL } = modalData;
 
-  const { name, id, price, details, category, imageURL } = modalData;
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
 
   return (
     <div
@@ -31,34 +33,12 @@ const Modal = ({ modalData, showModal, setShowModal }) => {
             <p className="text-2xl font-semibold">${price}</p>
             <p className="text-sm my-3">Category: {category}</p>
 
-            <div className="flex justify-between items-center">
-              <div className="w-1/2 pr-1 bg-red-5">
-                <div className="w-full border border-gray-500/20 rounded-md py-2 flex justify-between items-center px-1">
-                  <button
-                    onClick={() =>
-                      quantity <= 1
-                        ? setQuantity(quantity)
-                        : setQuantity(quantity - 1)
-                    }
-                    className="p-2 hover:text-[#0d7a52]"
-                  >
-                    <BiMinus size={20} />
-                  </button>
-                  <p className="font-semibold">{quantity}</p>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="p-2 hover:text-[#0d7a52]"
-                  >
-                    <BiPlus size={20} />
-                  </button>
-                </div>
-              </div>
-              <div className=" w-1/2 bg-green-00 pl-1">
-                <button className="bg-[#0d7a52] border border-[#0d7a52] text-white font-semibold text-sm py-4 w-full rounded-md">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
+            <button
+              onClick={() => handleAddToCart(modalData)}
+              className="bg-[#0d7a52] border border-[#0d7a52] text-white font-semibold text-sm py-3 px-8 rounded-md"
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>

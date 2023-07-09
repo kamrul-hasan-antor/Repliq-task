@@ -21,7 +21,7 @@ const Products = () => {
   };
 
   return (
-    <div className="md:flex h-[200vh] w-11/12 lg:w- max-w-screen-2xl mx-auto py-6">
+    <div className="md:flex h-max w-11/12 lg:w- max-w-screen-2xl mx-auto py-6">
       <div className="bg-red-00 w-full">
         <div className="text-center md:w-[45%] mx-auto py-2 pb-6">
           <h2 className="text-lg md:text-2xl font-semibold pb-2">
